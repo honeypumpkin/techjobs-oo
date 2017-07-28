@@ -46,8 +46,13 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        if (! jobForm.getName().equals("")) {
+//        if (! jobForm.getName().equals("")) {
+        if (errors.hasErrors()) {
 
+            return "new-job";
+
+
+        }
             String name = jobForm.getName();
             Employer employer = jobData.getEmployers().findById(jobForm.getEmployerId());
             Location location = jobData.getLocations().findById(jobForm.getLocationId());
@@ -60,11 +65,11 @@ public class JobController {
             model.addAttribute("job", newJob);
 
             return "redirect:/job?id=" + newJobId;
-        }
 
 
 
-        return "";
+
+
 
     }
 }
